@@ -10,3 +10,6 @@ If filtering on load by user nput, you can change the initial filter text by cha
 If filtering on load by a dropdown value, you can change the initial product family to filter by by changing defaultDropdownValue (line 31) to one of the options in dropdownOptions (line 21);
 
 Script should actually work on any product page on EVGA's website as they follow the same HTML format, but that's untested.
+
+## Installation
+Copy/Paste the script (https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/bstock-product-filter-script.js) as a new script on TamperMonkey.
