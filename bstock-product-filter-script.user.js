@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         B Stock Product Filter
 // @namespace    http://tampermonkey.net/
-// @version      0.2.2
+// @version      0.3
 // @description  Product filter for EVGA B-Stock product pages
 // @author       Moto
 // @match        https://www.evga.com/*
@@ -15,7 +15,7 @@
 (function() {
     'use strict';
 
-    // Variable declarations & element creation
+    // Enum Creation
     const filterModes = {
         userInput: 'userInput',
         dropdown: 'dropdown'
@@ -28,12 +28,19 @@
         b3070ti: '3070 Ti',
         b3080ti: '3080 Ti',
     }
+
+    // User Settings
     const filterOnLoad = false; // Change to true to filter elements by the default filter value
     const defaultFilterMode = filterModes.dropdown; // Change this to "filterModes.dropdown" to filter by the the intial dropdownValue
     const defaultFilterText = "RTX"; // Change this to change the initial filter text
     const defaultDropdownValue = ''; // Change this to one of the dropdown options (i.e "dropdownOptions.b3060ti") to set the dropdown value to filter by on load
-    const productContainers = document.querySelectorAll('.list-item');
+
+    // Variable declarations
+    const viewMode = document.querySelector('#LFrame_prdList_pnlListView') ? 'list' : 'grid';
+    const productContainers = document.querySelectorAll(`.${viewMode}-item`);
     const header = document.querySelector('#LFrame_prdList_pnlOptionsSort');
+
+    // Custom HTML element creation
     const container = document.createElement('div');
     const filterButton = document.createElement('button');
     const clearFilterButton = document.createElement('button');
@@ -51,7 +58,7 @@
 
     // Function declarations
     const filterElements = (filterMode) => {
-        clearFilter();
+        clearFilter(false);
         let filterText;
         if (filterMode === filterModes.userInput) {
             filterText = document.querySelector('.filter-elements-input').value.toLowerCase();
@@ -60,19 +67,35 @@
         }
 
         for (let node of productContainers) {
-            const nodeText = node.querySelector('.pl-list-pname').childNodes[1].innerHTML.toLowerCase();
+            const nodeText = node.querySelector(`.pl-${viewMode}-pname`).childNodes[1].innerHTML.toLowerCase();
             if (!nodeText.includes(filterText)) {
-                node.style.display = 'none';
+                if (viewMode == 'grid') {
+                    node.parentNode.style.display = 'none';
+                } else {
+                    node.style.display = 'none';
+                }
             }
             if (!filterText.includes('ti') && nodeText.includes('ti')) {
-                node.style.display = 'none';
+                if (viewMode == 'grid') {
+                    node.parentNode.style.display = 'none';
+                } else {
+                    node.style.display = 'none';
+                }
             }
         }
     }
 
-    const clearFilter = () => {
+    const clearFilter = (eraseValue) => {
+        if (eraseValue) {
+            input.value = '';
+            select.value = '';
+        }
         for (let node of productContainers) {
-            node.style.display = 'block';
+            if (viewMode == 'grid') {
+                node.parentNode.style.display = 'block';
+            } else {
+                node.style.display = 'block';
+            }
         }
     }
 
@@ -87,7 +110,7 @@
     const main = () => {
         // Set button properties/style
         setButtonStyle(filterButton, 'Filter Products', () => { filterElements(filterModes.userInput) });
-        setButtonStyle(clearFilterButton, 'Clear Filter', clearFilter);
+        setButtonStyle(clearFilterButton, 'Clear Filter', () => { clearFilter(true) });
         setButtonStyle(button3060ti, 'View B-Stock 3060Ti Family', () => { window.open(chipsetFamilies.b3060ti, '_blank') });
         setButtonStyle(button3070, 'View B-Stock 3070 Family', () => { window.open(chipsetFamilies.b3070, '_blank') });
         setButtonStyle(button3080, 'View B-Stock 3080 Family', () => { window.open(chipsetFamilies.b3080, '_blank') });
@@ -98,12 +121,16 @@
         input.value = defaultFilterText;
 
         // Set select properties/style
-        select.style = "display: block;border: none;margin-top: 10px;border-radius: 8px;color: black;background-color: white;text-transform: capitalize; font-size:12px;transform: translatex(30px)";
+        select.style = "display: block;border: none;margin-top: 10px;border-radius: 8px;color: black;background-color: white;text-transform: capitalize; font-size:12px;";
         select.className = "filter-elements-select";
+        
+        // Create a default option with blank value
         let defaultOption = document.createElement('option');
         defaultOption.value = '';
         defaultOption.innerHTML = '(Select a product family to filter by)';
         select.appendChild(defaultOption);
+        
+        // Create options from dropdownValues and append them
         for (const value of Object.values(dropdownOptions)) {
             let option = document.createElement('option');
             option.value = value;
@@ -116,8 +143,7 @@
 
         // Set container properties/style and append elements
         container.className="product-filter-container";
-        container.style.width = "1000px";
-        container.style.padding = "5px";
+        container.style="width:1100px;padding:5px;display:flex;flex-wrap:wrap"
         container.appendChild(input);
         container.appendChild(filterButton);
         container.appendChild(clearFilterButton);
@@ -129,7 +155,6 @@
         header.appendChild(container);
 
         if (filterOnLoad) {
-            console.log('filtering on load');
             filterElements(defaultFilterMode);
         }
     }
@@ -137,6 +162,4 @@
     if (document.title.toLowerCase().includes('products')) {
         main();
     }
-
-
 })();
