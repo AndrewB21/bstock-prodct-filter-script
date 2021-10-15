@@ -12,4 +12,4 @@ If filtering on load by a dropdown value, you can change the initial product fam
 Script should actually work on any product page on EVGA's website as they follow the same HTML format, but that's untested.
 
 ## Installation
-Copy/Paste the script (https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/bstock-product-filter-script.js) as a new script on TamperMonkey.
+Copy/Paste the script as a new script on TamperMonkey, or [click here.](https://github.com/AndrewB21/bstock-product-filter-script/raw/master/bstock-product-filter-script.user.js)
