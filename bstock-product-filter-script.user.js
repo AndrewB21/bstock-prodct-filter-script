@@ -5,7 +5,9 @@
 // @version      0.2.1
 // @description  Product filter for EVGA B-Stock product pages
 // @author       You
-// @match      https://www.evga.com/*
+// @match        https://www.evga.com/*
+// @updateUrl    https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/bstock-product-filter-script.user.js
+// @downloadUrl  https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/bstock-product-filter-script.user.js
 // @icon         https://www.google.com/s2/favicons?domain=evga.com
 // @grant        none
 // ==/UserScript==
