@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         B Stock Product Filter
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.2.1
 // @description  Product filter for EVGA B-Stock product pages
 // @author       You
 // @match      https://www.evga.com/*
@@ -19,6 +19,7 @@
         dropdown: 'dropdown'
     }
     const dropdownOptions = {
+        b3060: '3060',
         b3060ti: '3060 Ti',
         b3070: '3070',
         b3080: '3080',
