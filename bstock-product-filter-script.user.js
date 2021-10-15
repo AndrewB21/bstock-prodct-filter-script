@@ -2,9 +2,9 @@
 // ==UserScript==
 // @name         B Stock Product Filter
 // @namespace    http://tampermonkey.net/
-// @version      0.2.1
+// @version      0.2.2
 // @description  Product filter for EVGA B-Stock product pages
-// @author       You
+// @author       Moto
 // @match        https://www.evga.com/*
 // @updateUrl    https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/bstock-product-filter-script.user.js
 // @downloadUrl  https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/bstock-product-filter-script.user.js
