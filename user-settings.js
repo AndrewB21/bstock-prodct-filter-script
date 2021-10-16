@@ -48,7 +48,7 @@ const renderUserSettings = () => {
     // Create & style footer text
     let footerText = document.createElement('p');
     footerText.innerText = "B Stock Filter Settings";
-    footerText.addEventListener('click', toggleSettings);
+    footerText.addEventListener('click', () => { toggleSettings() });
     footerText.style = "font-size:18px;font-weight:bold;text-align:center;cursor:pointer;";
     footer.appendChild(footerText);
 
