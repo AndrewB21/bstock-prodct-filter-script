@@ -1,4 +1,4 @@
-require('./constants');
+// @require      https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/cef621dc9d8a39bb1c6beadbdd96e5957a5b7aac/constants.js
 
 // Load saved user settings from local storage and assign them to userSettings
 const savedUserSettings = window.localStorage.getItem('userSettings');
