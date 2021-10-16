@@ -22,12 +22,12 @@ const saveSettings = () => {
 }
 
 const createSelectInput = (selectOptions, settingKey) => {
-    let select = document.createElement('select');
+    let selectInput = document.createElement('select');
     for (const value of Object.values(selectOptions)) {
         let option = createSelectOption(value);
-        input.appendChild(option);
+        selectInput.appendChild(option);
     }
-    select.addEventListener('input', (event) => { userSettings[settingKey] = event.target.value; saveSettings(); });
+    selectInput.addEventListener('input', (event) => { userSettings[settingKey] = event.target.value; saveSettings(); });
     return select;
 }
 
