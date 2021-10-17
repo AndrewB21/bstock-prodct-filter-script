@@ -15,7 +15,17 @@ const toggleSettings = () => {
     let elementDisplay = settingsExpanded ? 'visible' : 'hidden';
     settingsContainer.style.visibility = elementDisplay;
     setTimeout(() => {
+<<<<<<< HEAD
         closeButton.style.visibility = elementDisplay;
+=======
+        // Fixes issue where elements would pop instantly on first load
+        closeButton.style.visibility = 'visible';
+        closeButton.style.visibility = 'visible';
+
+        // Update element display based on settings expansion state
+        closeButton.style.display = elementDisplay;
+        settingsUpdateSpan.style.display = elementDisplay;
+>>>>>>> 2457a353e875a6a30678300ccb81c78410be6abb
     }, settingsExpanded ? 750 : 200);
 }
 
