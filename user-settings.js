@@ -15,6 +15,11 @@ const toggleSettings = () => {
     let elementDisplay = settingsExpanded ? 'block' : 'none';
     settingsContainer.style.display = elementDisplay;
     setTimeout(() => {
+        // Fixes issue where elements would pop instantly on first load
+        closeButton.style.visibility = 'visible';
+        closeButton.style.visibility = 'visible';
+
+        // Update element display based on settings expansion state
         closeButton.style.display = elementDisplay;
         settingsUpdateSpan.style.display = elementDisplay;
     }, settingsExpanded ? 750 : 200);
@@ -150,9 +155,9 @@ const renderUserSettings = () => {
 
     // Create "changes will be reflected next time you load the page" message
     const settingsUpdateSpan = document.createElement('span');
-    settingsUpdateSpan = "Changes will be reflected next time you load the page";
+    settingsUpdateSpan.innerText = "Changes will be reflected next time you load the page";
     settingsUpdateSpan.id = 'settings-update-msg';
-    settingsUpdateSpan.style = "position:absolute;bottom:10%;left:5%";
+    settingsUpdateSpan.style = "position:absolute;bottom:10%;left:5%;visibility:hidden";
     settingsContainer.appendChild(settingsUpdateSpan);
 
     // Create a close settings button
@@ -160,6 +165,6 @@ const renderUserSettings = () => {
     closeButton.id = "close-settings-btn";
     closeButton.innerText = "Close Settings";
     closeButton.addEventListener('click', () => { toggleSettings(footer) });
-    closeButton.style = "position: absolute;bottom: 10%;right: 5%;";
+    closeButton.style = "position: absolute;bottom: 10%;right: 5%;visibility:hidden";
     settingsContainer.appendChild(closeButton);
 }
