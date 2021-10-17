@@ -15,7 +15,7 @@ const toggleSettings = () => {
     settingsContainer.style.display = elementDisplay;
     setTimeout(() => {
         closeButton.style.display = elementDisplay;
-    }, settingsExpanded ? 900 : 200);
+    }, settingsExpanded ? 500 : 200);
 }
 
 const saveSettings = () => {
@@ -151,6 +151,6 @@ const renderUserSettings = () => {
     closeButton.id = "close-settings-btn";
     closeButton.innerText = "Close Settings";
     closeButton.addEventListener('click', () => { toggleSettings(footer) });
-    closeButton.style = "position: absolute;bottom: 8%;right: 5%;";
+    closeButton.style = "position: absolute;bottom: 10%;right: 5%;";
     settingsContainer.appendChild(closeButton);
 }
