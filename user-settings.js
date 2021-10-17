@@ -5,6 +5,7 @@ const toggleSettings = () => {
     const footer = document.querySelector("#settings-footer");
     const settingsContainer = document.querySelector('#settings-container');
     const closeButton = document.querySelector('#close-settings-btn');
+    const settingsUpdateSpan = document.querySelector("#settings-update-msg")
     if (settingsExpanded) {
         footer.style.height = '30px';
     } else {
@@ -15,7 +16,8 @@ const toggleSettings = () => {
     settingsContainer.style.display = elementDisplay;
     setTimeout(() => {
         closeButton.style.display = elementDisplay;
-    }, settingsExpanded ? 500 : 200);
+        settingsUpdateSpan.style.display = elementDisplay;
+    }, settingsExpanded ? 750 : 200);
 }
 
 const saveSettings = () => {
@@ -145,6 +147,13 @@ const renderUserSettings = () => {
         inputContainer.appendChild(input);
         settingsContainer.appendChild(inputContainer);
     }
+
+    // Create "changes will be reflected next time you load the page" message
+    const settingsUpdateSpan = document.createElement('span');
+    settingsUpdateSpan = "Changes will be reflected next time you load the page";
+    settingsUpdateSpan.id = 'settings-update-msg';
+    settingsUpdateSpan.style = "position:absolute;bottom:10%;left:5%";
+    settingsContainer.appendChild(settingsUpdateSpan);
 
     // Create a close settings button
     const closeButton = document.createElement('button');
