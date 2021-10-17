@@ -1,13 +1,5 @@
 // @require      https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/cef621dc9d8a39bb1c6beadbdd96e5957a5b7aac/constants.js
 
-// Load saved user settings from local storage and assign them to userSettings
-const savedUserSettings = window.localStorage.getItem('userSettings');
-const userSettings = savedUserSettings ? JSON.parse(savedUserSettings) : defaultUserSettings;
-// Saving/loading from local storage usually results in bools being converted to strings, but occasionally they don't, so we convert to string then check the value  ¯\_(ツ)_/¯
-userSettings.filterOnLoad = userSettings.filterOnLoad.toString() === 'true' ? true : false;
-
-let settingsExpanded = false; // tracks the expanded/collapsed state of the settings window
-
 // Helper method declarations
 const toggleSettings = () => {
     const footer = document.querySelector("#settings-footer");
@@ -61,6 +53,23 @@ let convertCamelCaseToSettingName = (camelCaseString) => {
     words = words.concat(capitalWords);
     return words.join(' ');
 }
+
+// Load saved user settings from local storage and assign them to userSettings
+const savedUserSettings = window.localStorage.getItem('userSettings');
+const userSettings = savedUserSettings ? JSON.parse(savedUserSettings) : defaultUserSettings;
+if (Object.keys(userSettings).length !== Object.keys(defaultUserSettings)) {
+	// New settings were likely added, so we need to update our saved settings with the default values
+   	for (const key of Object.keys(defaultUserSettings)) {
+    	if (!userSettings[key]) {
+    		userSettings[key] = defaultUserSettings[key];
+    	}
+    }
+	saveSettings();
+}
+// Saving/loading from local storage usually results in bools being converted to strings, but occasionally they don't, so we convert to string then check the value  ¯\_(ツ)_/¯
+userSettings.filterOnLoad = userSettings.filterOnLoad.toString() === 'true' ? true : false;
+
+let settingsExpanded = false; // tracks the expanded/collapsed state of the settings window
 
 // Main method to render the user settings
 const renderUserSettings = () => {
@@ -117,8 +126,12 @@ const renderUserSettings = () => {
             case 'priceRangeStart': 
             case 'priceRangeEnd' :
                 input = document.createElement('input');
-                input.type = number;
+                input.style.width = '85px';
+                input.min = 0;
+                input.max = 9999;
+                input.type = 'number';
                 input.addEventListener('input', (event) => { userSettings[key] = event.target.value; saveSettings(); });
+                break;
             default:
                 break;
         }
