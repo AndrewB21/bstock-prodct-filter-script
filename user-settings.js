@@ -68,11 +68,11 @@ const renderUserSettings = () => {
     let footerText = document.createElement('p');
     footerText.innerText = "B Stock Filter Settings";
     footerText.addEventListener('click', () => { toggleSettings(footer) });
-    footerText.style = "font-size:18px;font-weight:bold;text-align:center;cursor:pointer;";
+    footerText.style = "font-size:18px;font-weight:bold;margin-left: 10px;cursor:pointer;";
     
     let createdByText = document.createElement('span');
     createdByText.innerText = "created by Moto";
-    createdByText.style = "font-size: 10px; position:absolute;right:0;"
+    createdByText.style = "font-size: 10px; position:absolute;right:5px;top:8px;"
     footerText.appendChild(createdByText);
     footer.appendChild(footerText);
 
