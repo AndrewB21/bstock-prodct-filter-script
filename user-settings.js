@@ -5,18 +5,17 @@ const toggleSettings = () => {
     const footer = document.querySelector("#settings-footer");
     const settingsContainer = document.querySelector('#settings-container');
     const closeButton = document.querySelector('#close-settings-btn');
-    const settingsUpdateSpan = document.querySelector("#settings-update-msg")
     if (settingsExpanded) {
         footer.style.height = '30px';
     } else {
         footer.style.height = '325px';
     }
     settingsExpanded = !settingsExpanded;
-    let elementDisplay = settingsExpanded ? 'block' : 'none';
-    settingsContainer.style.display = elementDisplay;
+
+    let elementDisplay = settingsExpanded ? 'visible' : 'hidden';
+    settingsContainer.style.visibility = elementDisplay;
     setTimeout(() => {
-        closeButton.style.display = elementDisplay;
-        settingsUpdateSpan.style.display = elementDisplay;
+        closeButton.style.visibility = elementDisplay;
     }, settingsExpanded ? 750 : 200);
 }
 
@@ -96,7 +95,7 @@ const renderUserSettings = () => {
     // Create & style the inner settings container
     let settingsContainer = document.createElement('div');
     settingsContainer.id = "settings-container";
-    settingsContainer.style = 'width: 95%; height: 82%;background-color: white;margin: 0 auto;margin-top:5px;color: black;padding:5px;display:none;'
+    settingsContainer.style = 'width: 95%; height: 82%;background-color: white;margin: 0 auto;margin-top:5px;color: black;padding:5px;visibility:hidden;'
     footer.appendChild(settingsContainer);
 
     // Loop through the userSettings and create/append inputs for all of them
@@ -149,17 +148,17 @@ const renderUserSettings = () => {
     }
 
     // Create "changes will be reflected next time you load the page" message
-    const settingsUpdateSpan = document.createElement('span');
-    settingsUpdateSpan = "Changes will be reflected next time you load the page";
+    const settingsUpdateSpan = document.createElement('p');
+    settingsUpdateSpan.innerText = "Changes will be reflected next time you load the page";
     settingsUpdateSpan.id = 'settings-update-msg';
-    settingsUpdateSpan.style = "position:absolute;bottom:10%;left:5%";
-    settingsContainer.appendChild(settingsUpdateSpan);
+    settingsUpdateSpan.style = "font-size:10px";
+    settingsContainer.prepend(settingsUpdateSpan);
 
     // Create a close settings button
     const closeButton = document.createElement('button');
     closeButton.id = "close-settings-btn";
     closeButton.innerText = "Close Settings";
     closeButton.addEventListener('click', () => { toggleSettings(footer) });
-    closeButton.style = "position: absolute;bottom: 10%;right: 5%;";
+    closeButton.style = "position: absolute;bottom: 10%;right: 5%;visibility:hidden";
     settingsContainer.appendChild(closeButton);
 }
