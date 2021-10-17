@@ -2,12 +2,12 @@
 // ==UserScript==
 // @name         B Stock Product Filter
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      1.0
 // @description  Product filter for EVGA B-Stock product pages
 // @author       Moto
 // @match        https://www.evga.com/*
-// @require      https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/cef621dc9d8a39bb1c6beadbdd96e5957a5b7aac/constants.js
-// @require      https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/feature/user-settings/user-settings.js
+// @require      https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/constants.js
+// @require      https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/user-settings.js
 // @updateUrl    https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/bstock-product-filter-script.user.js
 // @downloadUrl  https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/bstock-product-filter-script.user.js
 // @icon         https://www.google.com/s2/favicons?domain=evga.com
