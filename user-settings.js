@@ -126,7 +126,6 @@ const renderUserSettings = () => {
             case 'priceRangeStart': 
             case 'priceRangeEnd' :
                 input = document.createElement('input');
-                input.style.width = '85px';
                 input.min = 0;
                 input.max = 9999;
                 input.type = 'number';
@@ -138,7 +137,7 @@ const renderUserSettings = () => {
 
         // Set styles for container/input
         inputContainer.style="margin-top: 10px;";
-        input.style = "margin-left:30px;background-color: #161415;border: 1px solid #444;color: white;"
+        input.style = "margin-left:30px;background-color: #161415;border: 1px solid #444;color: white;max-width:125px;"
 
         // Set inputs and append elements
         input.value = value; 
