@@ -6,8 +6,8 @@
 // @description  Product filter for EVGA B-Stock product pages
 // @author       Moto
 // @match        https://www.evga.com/*
-// @require      https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/constants.js
-// @require      https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/user-settings.js
+// @require      https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/feature/price-filter/constants.js
+// @require      https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/feature/price-filter/user-settings.js
 // @updateUrl    https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/bstock-product-filter-script.user.js
 // @downloadUrl  https://raw.githubusercontent.com/AndrewB21/bstock-product-filter-script/master/bstock-product-filter-script.user.js
 // @icon         https://www.google.com/s2/favicons?domain=evga.com
@@ -60,7 +60,6 @@
             const nodeText = node.querySelector(`.pl-${viewMode}-pname`).childNodes[1].innerHTML.toLowerCase();
             const nodePrice = parseFloat(node.querySelector('#divPriceFinal').firstElementChild.firstElementChild.innerText.replace('$',''));
             if (nodePrice < startPrice || nodePrice > endPrice) {
-                console.log('hiding node by price');
                 hideNode(node);
             }
             if (!nodeText.includes(filterText)) {
@@ -140,6 +139,8 @@
         }
         priceStartInput.placeholder = "Price Low";
         priceEndInput.placeholder = "Price High";
+        priceStartInput.value = userSettings.priceRangeStart;
+        priceEndInput.value = userSettings.priceRangeEnd;
 
         // Style price filter container and append inputs
         priceFilterContainer.style = 'margin: 10px 0 0 20px';
