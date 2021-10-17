@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         B Stock Product Filter
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Product filter for EVGA B-Stock product pages
 // @author       Moto
 // @match        https://www.evga.com/*
@@ -151,7 +151,7 @@
 
         // Set container properties/style and append elements
         mainContainer.className="product-filter-container";
-        mainContainer.style="width:1100px;padding:5px;display:flex;flex-wrap:wrap"
+        mainContainer.style="width:900;padding:5px;display:flex;flex-wrap:wrap"
         const containerElements = [filterTextInput, clearFilterButton, button3060ti, button3070, button3080, familySelect, priceFilterContainer];
         containerElements.forEach((element) => { mainContainer.appendChild(element) });
 
