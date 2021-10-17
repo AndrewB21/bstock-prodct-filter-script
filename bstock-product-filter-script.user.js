@@ -151,7 +151,7 @@
 
         // Set container properties/style and append elements
         mainContainer.className="product-filter-container";
-        mainContainer.style="width:900;padding:5px;display:flex;flex-wrap:wrap"
+        mainContainer.style="width:900px;padding:5px;display:flex;flex-wrap:wrap"
         const containerElements = [filterTextInput, clearFilterButton, button3060ti, button3070, button3080, familySelect, priceFilterContainer];
         containerElements.forEach((element) => { mainContainer.appendChild(element) });
 
