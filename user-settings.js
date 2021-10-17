@@ -77,7 +77,7 @@ const renderUserSettings = () => {
     // Create & style footer element
     let footer = document.createElement('div');
     footer.id = "settings-footer"
-    footer.style = "width: 350px;position: fixed;background-color: green;height: 30px;bottom: 0;right: 0;transition: all 1s;"
+    footer.style = "width: 350px;position: fixed;background-color: rgb(50, 128, 154);height: 30px;bottom: 0;right: 0;transition: all 1s;"
     document.body.appendChild(footer);
 
     // Create & style footer text
