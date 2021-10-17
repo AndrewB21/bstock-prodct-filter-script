@@ -24,6 +24,7 @@ require('./user-settings');
     const viewMode = document.querySelector('#LFrame_prdList_pnlListView') ? 'list' : 'grid';
     const productContainers = document.querySelectorAll(`.${viewMode}-item`);
     const header = document.querySelector('#LFrame_prdList_pnlOptionsSort');
+    const groupByHeader = document.querySelector('#LFrame_prdList_spanSort');
 
     // Custom HTML element creation
     const container = document.createElement('div');
@@ -127,6 +128,11 @@ require('./user-settings');
         containerElements.forEach((element) => { container.appendChild(element) });
 
         header.appendChild(container);
+        
+        // Hide the "group by" header to make space for the product filter
+        if (groupByHeader) {
+             groupByHeader.style.display = 'none';
+        }
 
         if (userSettings.filterOnLoad) {
             filterElements(userSettings.defaultFilterMode);
