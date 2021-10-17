@@ -16,6 +16,8 @@ const defaultUserSettings = {
     defaultFilterMode: filterModes.userInput,
     defaultFilterText: '',
     defaultDropdownValue: '',
+    priceRangeStart: '',
+    priceRangeEnd: ''
 }
 
 const chipsetFamilies = {
