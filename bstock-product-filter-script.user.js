@@ -14,9 +14,6 @@
 // @grant        none
 // ==/UserScript==
 
-require('./constants');
-require('./user-settings');
-
 (function() {
     'use strict';
 
