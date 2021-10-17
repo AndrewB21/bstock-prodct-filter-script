@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         B Stock Product Filter
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Product filter for EVGA B-Stock product pages
 // @author       Moto
 // @match        https://www.evga.com/*
