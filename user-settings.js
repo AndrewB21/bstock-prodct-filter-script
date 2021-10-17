@@ -12,13 +12,18 @@ let settingsExpanded = false; // tracks the expanded/collapsed state of the sett
 const toggleSettings = () => {
     const footer = document.querySelector("#settings-footer");
     const settingsContainer = document.querySelector('#settings-container');
+    const closeButton = document.querySelector('#close-settings-btn');
     if (settingsExpanded) {
         footer.style.height = '30px';
     } else {
-        footer.style.height = '250px';
+        footer.style.height = '325px';
     }
     settingsExpanded = !settingsExpanded;
-    settingsContainer.style.display = settingsExpanded ? 'block' : 'none';
+    let elementDisplay = settingsExpanded ? 'block' : 'none';
+    settingsContainer.style.display = elementDisplay;
+    setTimeout(() => {
+        closeButton.style.display = elementDisplay;
+    }, settingsExpanded ? 900 : 200);
 }
 
 const saveSettings = () => {
@@ -109,6 +114,11 @@ const renderUserSettings = () => {
                 defaultOption.innerText = '(none)';
                 input.prepend(defaultOption);
                 break;
+            case 'priceRangeStart': 
+            case 'priceRangeEnd' :
+                input = document.createElement('input');
+                input.type = number;
+                input.addEventListener('input', (event) => { userSettings[key] = event.target.value; saveSettings(); });
             default:
                 break;
         }
@@ -126,6 +136,7 @@ const renderUserSettings = () => {
 
     // Create a close settings button
     const closeButton = document.createElement('button');
+    closeButton.id = "close-settings-btn";
     closeButton.innerText = "Close Settings";
     closeButton.addEventListener('click', () => { toggleSettings(footer) });
     closeButton.style = "position: absolute;bottom: 8%;right: 5%;";
