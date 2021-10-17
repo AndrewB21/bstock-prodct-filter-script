@@ -2,8 +2,9 @@
 
 // Load saved user settings from local storage and assign them to userSettings
 const savedUserSettings = window.localStorage.getItem('userSettings');
-const userSettings = savedUserSettings ? JSON.parse(savedUserSettings) : defaultUserSettings; 
-userSettings.filterOnLoad = userSettings.filterOnLoad === 'true' ? true : false; // Convert into a bool because pulling from local storage converts everything to a string
+const userSettings = savedUserSettings ? JSON.parse(savedUserSettings) : defaultUserSettings;
+// Saving/loading from local storage usually results in bools being converted to strings, but occasionally they don't, so we convert to string then check the value  ¯\_(ツ)_/¯
+userSettings.filterOnLoad = userSettings.filterOnLoad.toString() === 'true' ? true : false;
 
 let settingsExpanded = false; // tracks the expanded/collapsed state of the settings window
 
